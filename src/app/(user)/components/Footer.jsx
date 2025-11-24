@@ -1,87 +1,77 @@
 import React from 'react';
-import { Facebook, Instagram, Youtube, Mail, Phone, MapPin } from 'lucide-react';
+import { Facebook, Instagram, Youtube, MessageCircle } from 'lucide-react';
 
 const Footer = () => {
   return (
     <footer className="bg-[#0B31BD] text-white">
       <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
 
-          {/* Brand & Description */}
+          {/* Brand & Social */}
           <div className="space-y-6">
-            <h2 className="text-3xl font-bold">Schäfer Tutoring</h2>
-            <p className="text-gray-300 leading-relaxed max-w-xs">
-              Deine persönliche Online-Nachhilfe in Berlin – Mathematik, Physik, Chemie und mehr. 
-              Flexibel, effektiv und mit geprüften Lehrkräften.
-            </p>
+            <h2 className="text-2xl font-bold">Schäfer Tutoring</h2>
             
             <div className="flex gap-4">
-              <a href="#" className="bg-white/10 p-3 rounded-full hover:bg-white hover:text-[#0B31BD] transition">
-                <Facebook size={20} />
+              <a href="#" className="hover:opacity-80 transition">
+                <Instagram size={24} />
               </a>
-              <a href="#" className="bg-white/10 p-3 rounded-full hover:bg-white hover:text-[#0B31BD] transition">
-                <Instagram size={20} />
+              <a href="#" className="hover:opacity-80 transition">
+                <Facebook size={24} />
               </a>
-              <a href="#" className="bg-white/10 p-3 rounded-full hover:bg-white hover:text-[#0B31BD] transition">
-                <Youtube size={20} />
+              <a href="#" className="hover:opacity-80 transition">
+                <Youtube size={24} />
+              </a>
+              <a href="#" className="hover:opacity-80 transition">
+                <MessageCircle size={24} />
               </a>
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Rechtliches */}
           <div>
-            <h3 className="font-bold text-xl mb-6">Quick Links</h3>
-            <ul className="space-y-3 text-gray-300">
-              <li><a href="/" className="hover:text-white transition">Home</a></li>
-              <li><a href="/faq" className="hover:text-white transition">FAQ</a></li>
-              <li><a href="/pricing" className="hover:text-white transition">Preise</a></li>
-              <li><a href="/contact" className="hover:text-white transition">Kontakt</a></li>
+            <h3 className="font-semibold text-xl mb-4">Rechtliches</h3>
+            <ul className="space-y-4 mt-8 text-sm">
+              <li><a href="#" className="hover:underline">Datenschutz</a></li>
+              <li><a href="#" className="hover:underline">AGB Schüler</a></li>
+              <li><a href="#" className="hover:underline">AGB Lehrer</a></li>
+              <li><a href="#" className="hover:underline">Widerrufsbelehrung</a></li>
+              <li><a href="#" className="hover:underline">Impressum</a></li>
+              <li><a href="#" className="hover:underline">Cookie-Richtlinie</a></li>
             </ul>
           </div>
 
-          {/* Fächer */}
+          {/* Unternehmen */}
           <div>
-            <h3 className="font-bold text-xl mb-6">Beliebte Fächer</h3>
-            <ul className="space-y-3 text-gray-300">
-              <li>Mathematik</li>
-              <li>Physik</li>
-              <li>Chemie</li>
-              <li>Englisch</li>
-              <li>Deutsch</li>
-              <li>Latein</li>
+            <h3 className="font-semibold text-xl mb-4">Unternehmen</h3>
+            <ul className="space-y-4 mt-8 text-sm">
+              <li><a href="#" className="hover:underline">Über uns</a></li>
+              <li><a href="#" className="hover:underline">Blog</a></li>
+              <li><a href="#" className="hover:underline">Karriere</a></li>
+              <li><a href="#" className="hover:underline">Kontakt</a></li>
             </ul>
           </div>
 
-          {/* Contact Info */}
+          {/* Newsletter */}
           <div>
-            <h3 className="font-bold text-xl mb-6">Kontakt</h3>
-            <div className="space-y-4 text-gray-300">
-              <div className="flex items-center gap-3">
-                <Mail size={18} />
-                <span>info@schaefer-tutoring.de</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <Phone size={18} />
-                <span>+49 30 12345678</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <MapPin size={18} />
-                <span>Berlin, Deutschland</span>
-              </div>
+            <h3 className="font-semibold text-lg mb-4">Newsletter</h3>
+            <div className="space-y-3 mt-8">
+              <input
+                type="email"
+                placeholder="E-Mail eingeben"
+                className="w-full px-4 py-2 rounded-lg bg-white/20 border border-white/30 text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-white/50"
+              />
+              <button className="w-2/3 bg-white text-black font-semibold py-2 px-6 rounded-lg hover:bg-gray-100 transition">
+                Anmelden
+              </button>
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="mt-16 pt-8 border-t border-white/20 text-center">
-          <p className="text-gray-400 text-sm">
+        {/* Bottom Copyright */}
+        <div className="mt-12 pt-8 border-t border-white/20 text-center">
+          <p className="text-sm text-white/80">
             © 2025 Schäfer Tutoring. Alle Rechte vorbehalten.
           </p>
-          <div className="mt-4 flex justify-center gap-8 text-sm">
-            <a href="/impressum" className="text-gray-400 hover:text-white transition">Impressum</a>
-            <a href="/datenschutz" className="text-gray-400 hover:text-white transition">Datenschutz</a>
-            <a href="/agb" className="text-gray-400 hover:text-white transition">AGB</a>
-          </div>
         </div>
       </div>
     </footer>

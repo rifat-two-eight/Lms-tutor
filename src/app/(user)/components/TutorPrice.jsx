@@ -1,36 +1,19 @@
-"use client"
+"use client";
 
-import { useState } from "react"
+import { Button } from "@/components/ui/button";
+import { useState, useEffect } from "react";
 
-const TutorPrice = () => {
-  const [currentTutorIndex, setCurrentTutorIndex] = useState(0)
+export default function TutorPrice() {
+  const [currentTutorIndex, setCurrentTutorIndex] = useState(0);
 
   const tutors = [
-    {
-      id: 1,
-      name: "Luca",
-      rating: 4.9,
-      specialization: "Soziologie TU Berlin",
-    },
-    {
-      id: 2,
-      name: "Diego",
-      rating: 4.9,
-      specialization: "Soziologie TU Berlin",
-    },
-    {
-      id: 3,
-      name: "Yumi",
-      rating: 5,
-      specialization: "Soziologie TU Berlin",
-    },
-    {
-      id: 4,
-      name: "Lisa",
-      rating: 5,
-      specialization: "Soziologie TU Berlin",
-    },
-  ]
+    { id: 1, name: "Luca", rating: 4.9, specialization: "Soziologie TU Berlin", image: "/luca.png" },
+    { id: 2, name: "Diego", rating: 4.9, specialization: "Soziologie TU Berlin", image: "/diego.png" },
+    { id: 3, name: "Yumi", rating: 5, specialization: "Soziologie TU Berlin", image: "/yumi.png" },
+    { id: 4, name: "Lisa", rating: 5, specialization: "Soziologie TU Berlin", image: "/lisa.png" },
+    { id: 5, name: "Alex", rating: 5, specialization: "Soziologie TU Berlin", image: "/luca.png" },
+    { id: 6, name: "Maria", rating: 5, specialization: "Soziologie TU Berlin", image: "/diego.png" },
+  ];
 
   const pricingPlans = [
     {
@@ -39,10 +22,9 @@ const TutorPrice = () => {
       pricePerHour: "30€",
       courseDuration: "Keine",
       selectedHours: "Anzahl wählbar",
-      selectedHoursDetails: "Min. Stundenppaket",
-      termDetails: "Flexibel",
-      termType: "Flexibel oder regelmäßig",
-      inclusions: ["Kurs-Anforderungen Unterstützung", "Prüfungsvorbereitung"],
+      selectedHoursDetails: "Keine Mindestanzahl",
+      termType: "Flexibel",
+      inclusions: ["Kurzfristige Unterstützung", "Prüfungsvorbereitung"],
     },
     {
       id: 2,
@@ -51,7 +33,6 @@ const TutorPrice = () => {
       courseDuration: "1 Monat",
       selectedHours: "Anzahl wählbar",
       selectedHoursDetails: "Min. 4 Stunden pro Monat",
-      termDetails: "Flexibel oder regelmäßig",
       termType: "Flexibel oder regelmäßig",
       inclusions: ["Unterstützung bei Hausaufgaben", "Unterrichtsbegleitung"],
     },
@@ -62,72 +43,97 @@ const TutorPrice = () => {
       courseDuration: "3 Monate",
       selectedHours: "Anzahl wählbar",
       selectedHoursDetails: "Min. 4 Stunden pro Monat",
-      termDetails: "Flexibel oder regelmäßig",
       termType: "Flexibel oder regelmäßig",
       inclusions: ["Langfristige Unterstützung", "Grundlagenwiederholen"],
     },
-  ]
+  ];
+
+  const visibleCount = 4;
+  const cardWidth = 224; // w-48 (192px) + gap-6 (32px)
+
+  // Auto-slide
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTutorIndex((prev) => (prev + 1) % tutors.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [tutors.length]);
 
   const handlePrevTutor = () => {
-    setCurrentTutorIndex((prev) => (prev - 1 + tutors.length) % tutors.length)
-  }
+    setCurrentTutorIndex((prev) => (prev - 1 + tutors.length) % tutors.length);
+  };
 
   const handleNextTutor = () => {
-    setCurrentTutorIndex((prev) => (prev + 1) % tutors.length)
-  }
+    setCurrentTutorIndex((prev) => (prev + 1) % tutors.length);
+  };
 
   return (
-    <section className="w-full bg-white py-16 md:py-24 px-4 md:px-8">
-      {/* Tutors Carousel */}
-      <div className="mb-20">
-        <div className="flex items-center justify-center gap-4">
+    <section className="w-full">
+      {/* Infinite Smooth Carousel */}
+      <div className="mb-20 bg-[#FBFCFC]">
+        <div className="flex items-center max-w-7xl mx-auto py-16 md:py-24 justify-center gap-6">
+          {/* Prev */}
           <button
             onClick={handlePrevTutor}
-            className="p-2 hover:bg-gray-100 rounded-full transition"
-            aria-label="Previous tutor"
+            className="p-3 hover:bg-[#D8D7D7] rounded-full transition z-10"
+            aria-label="Previous"
           >
-            <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-7 h-7 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
           </button>
 
-          <div className="flex overflow-hidden gap-6 justify-center flex-wrap">
-            {tutors.map((tutor, index) => (
-              <div
-                key={tutor.id}
-                className={`transition-opacity duration-300 ${
-                  index === currentTutorIndex ? "opacity-100" : "opacity-30"
-                }`}
-              >
-                <div className="bg-gray-200 rounded-3xl p-1 w-48 h-64 flex items-center justify-center">
-                  <div className="w-full h-full bg-gradient-to-b from-gray-300 to-gray-400 rounded-3xl flex items-center justify-center">
-                    <span className="text-white text-sm">Tutor Image</span>
-                  </div>
-                </div>
-                <div className="mt-4 text-center">
-                  <h3 className="text-xl font-bold text-blue-600">{tutor.name}</h3>
-                  <div className="flex items-center justify-center gap-1 mt-1">
-                    <span className="text-sm font-semibold text-gray-800">{tutor.rating}</span>
-                    <div className="flex gap-0.5">
-                      {[...Array(5)].map((_, i) => (
-                        <span key={i} className="text-yellow-400">
-                          ★
-                        </span>
-                      ))}
+          {/* Carousel */}
+          <div className="relative overflow-hidden w-full">
+            <div
+              className="flex gap-6 transition-transform duration-700 ease-in-out"
+              style={{
+                transform: `translateX(-${currentTutorIndex * cardWidth}px)`,
+              }}
+            >
+              {/* Duplicate for infinite loop */}
+              {[...tutors, ...tutors].map((tutor, index) => (
+                <div key={`${tutor.id}-${index}`} className="flex-shrink-0">
+                  <div className="border-2 border-[#4864CE] rounded-4xl overflow-hidden">
+                    <div className="w-48 h-64">
+                      <img
+                        src={tutor.image}
+                        alt={tutor.name}
+                        className="w-full h-full object-cover rounded-3xl"
+                      />
+                    </div>
+                    <div className="py-3 text-center">
+                      <h3 className="text-xl font-bold text-[#0B31BD]">{tutor.name}</h3>
+                      <div className="flex items-center justify-center gap-1 mt-1">
+                        <span className="text-sm font-semibold text-[#0B31BD]">{tutor.rating}</span>
+                        <div className="flex gap-0.5">
+                          {[...Array(5)].map((_, i) => (
+                            <svg
+                              key={i}
+                              className={`w-5 h-5 ${i < Math.floor(tutor.rating) ? "text-yellow-400" : "text-gray-300"} drop-shadow`}
+                              fill="currentColor"
+                              viewBox="0 0 20 20"
+                            >
+                              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.962a1 1 0 00.95.69h4.163c.969 0 1.371 1.24.588 1.81l-3.37 2.448a1 1 0 00-.364 1.118l1.287 3.962c.3.921-.755 1.688-1.538 1.118l-3.37-2.448a1 1 0 00-1.176 0l-3.37 2.448c-.783.57-1.838-.197-1.538-1.118l1.287-3.962a1 1 0 00-.364-1.118L2.335 9.39c-.783-.57-.38-1.81.588-1.81h4.163a1 1 0 00.95-.69l1.286-3.962z" />
+                            </svg>
+                          ))}
+                        </div>
+                      </div>
+                      <p className="text-xs text-gray-600 mt-1">{tutor.specialization}</p>
                     </div>
                   </div>
-                  <p className="text-xs text-gray-600 mt-2">{tutor.specialization}</p>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
 
+          {/* Next */}
           <button
             onClick={handleNextTutor}
-            className="p-2 hover:bg-gray-100 rounded-full transition"
-            aria-label="Next tutor"
+            className="p-3 hover:bg-[#D8D7D7] rounded-full transition z-10"
+            aria-label="Next"
           >
-            <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-7 h-7 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </button>
@@ -135,50 +141,46 @@ const TutorPrice = () => {
       </div>
 
       {/* Pricing Section */}
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-blue-600 mb-4">Preise</h2>
-          <p className="text-gray-600 text-lg">Flexible Tarife für jedes Lernziel, inklusive kostenloser</p>
-          <p className="text-gray-600 text-lg">Probestunde.</p>
+          <h2 className="text-5xl font-bold text-[#0B31BD] mb-4">Preise</h2>
+          <p className="text-[#061651] text-lg">Flexible Tarife für jedes Lernziel, inklusive kostenloser</p>
+          <p className="text-[#061651] text-lg">Probestunde.</p>
         </div>
 
-        {/* Pricing Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-6">
           {pricingPlans.map((plan) => (
-            <div key={plan.id} className="bg-white border border-gray-200 rounded-lg overflow-hidden">
-              <div className="bg-blue-600 text-white p-4 rounded-t-lg">
-                <h3 className="text-xl font-bold text-center">{plan.name}</h3>
+            <div key={plan.id} className="bg-white border border-gray-200 p-3 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition">
+              <div className="bg-gradient-to-r from-[#2563EB] via-[#3B82F6] to-[#6366F1] text-white px-4 py-2 rounded-lg mb-6">
+                <h3 className="text-lg font-semibold">{plan.name}</h3>
               </div>
-
-              <div className="p-6 space-y-4">
+              <div className="space-y-4">
                 <div>
                   <p className="text-xs text-gray-500">Preis pro Stunde</p>
                   <p className="text-2xl font-bold text-gray-900">{plan.pricePerHour}</p>
+                  <hr className="my-2 text-[#F4F6F9] font-semibold" />
                 </div>
-
                 <div>
                   <p className="text-xs text-gray-500">Laufzeit</p>
                   <p className="text-sm font-semibold text-gray-900">{plan.courseDuration}</p>
+                  <hr className="my-2 text-[#F4F6F9] font-semibold" />
                 </div>
-
                 <div>
                   <p className="text-xs text-gray-500">Einheiten</p>
                   <p className="text-sm font-semibold text-gray-900">{plan.selectedHours}</p>
-                  <p className="text-xs text-gray-600 mt-1">{plan.selectedHoursDetails}</p>
+                  <p className="text-sm text-gray-900 font-semibold mt-1">{plan.selectedHoursDetails}</p>
+                  <hr className="my-2 text-[#F4F6F9] font-semibold" />
                 </div>
-
                 <div>
-                  <p className="text-xs text-gray-500">Terminabsprache</p>
+                  <p className="text-xs text-gray-500">Terminvereinbarung</p>
                   <p className="text-sm font-semibold text-gray-900">{plan.termType}</p>
+                  <hr className="my-2 text-[#F4F6F9] font-semibold" />
                 </div>
-
                 <div>
-                  <p className="text-xs text-gray-500">Enthalten in</p>
+                  <p className="text-xs text-gray-500">Empfohlen für</p>
                   <ul className="mt-2 space-y-1">
                     {plan.inclusions.map((inclusion, idx) => (
-                      <li key={idx} className="text-sm text-gray-700">
-                        • {inclusion}
-                      </li>
+                      <li key={idx} className="text-sm font-semibold text-gray-900">• {inclusion}</li>
                     ))}
                   </ul>
                 </div>
@@ -187,15 +189,14 @@ const TutorPrice = () => {
           ))}
         </div>
 
-        {/* CTA Button */}
         <div className="flex justify-center">
-          <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full transition">
-            Kostenlose Probestunde
-          </button>
+          <Button
+              className="bg-[#0B31BD] px-8 py-6 text-xl rounded-xl hover:bg-[#092A9E] text-white"
+            >
+              Kostenlose Probestunde
+            </Button>
         </div>
       </div>
     </section>
-  )
+  );
 }
-
-export default TutorPrice

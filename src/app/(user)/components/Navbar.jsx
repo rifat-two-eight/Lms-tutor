@@ -3,6 +3,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import { Menu, X } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -12,8 +13,8 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="bg-[#FBFCFC]">
-      <div className="px-4 sm:px-6 lg:px-8">
+    <nav className="bg-[#FBFCFC] ">
+      <div className="max-w-[calc(1280px+37px)] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-24">
           {/* Logo/Brand */}
           <div className="flex-shrink-0">
@@ -23,18 +24,18 @@ const Navbar = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            <Link href="/lehrer-werden" className="text-[#0B31BD] text-xl transition-colors">
+          <div className="hidden md:flex items-center gap-14">
+            <Link href="/" className="text-[#0B31BD] text-xl transition-colors">
               Lehrer werden
             </Link>
-            <button
-              className="bg-[#0B31BD] px-8 py-2 text-xl rounded-xl hover:bg-[#092A9E] text-white"
+            <Button
+              className="bg-[#0B31BD] px-8 py-6 text-xl rounded-xl hover:bg-[#092A9E] text-white"
               onClick={() => {
                 /* Handle signup */
               }}
             >
               Anmelden
-            </button>
+            </Button>
           </div>
 
           {/* Mobile menu button */}
