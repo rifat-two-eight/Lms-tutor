@@ -13,7 +13,7 @@ const Footer = () => {
             
             <div className="flex gap-4">
               <a href="#" className="hover:opacity-80 transition">
-                <Instagram size={24} />
+                <Instagram size={22} />
               </a>
               <a href="#" className="hover:opacity-80 transition">
                 <Facebook size={24} />
@@ -22,7 +22,7 @@ const Footer = () => {
                 <Youtube size={24} />
               </a>
               <a href="#" className="hover:opacity-80 transition">
-                <MessageCircle size={24} />
+                <img src="/whatsapp.svg" alt="WhatsApp" className="w-6 h-6" />
               </a>
             </div>
           </div>
@@ -58,7 +58,7 @@ const Footer = () => {
               <input
                 type="email"
                 placeholder="E-Mail eingeben"
-                className="w-full px-4 py-2 rounded-lg bg-white/20 border border-white/30 text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-white/50"
+                className="w-full px-4 py-2 rounded-lg bg-[#9CA8DB] text-white placeholder:text-white focus:outline-none focus:ring-2 focus:ring-white/50"
               />
               <button className="w-2/3 bg-white text-black font-semibold py-2 px-6 rounded-lg hover:bg-gray-100 transition">
                 Anmelden

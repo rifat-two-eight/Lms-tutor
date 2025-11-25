@@ -30,7 +30,7 @@ const Banner = () => {
             </div>
 
             {/* Right Image */}
-            <div className="block absolute right-0 bottom-0">
+            <div className="hidden md:block absolute right-0 bottom-0">
               <img src="/girl-student.png" alt="Girl student" className="w-full h-full object-cover object-bottom" />
             </div>
           </div>

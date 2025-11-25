@@ -22,7 +22,6 @@ export default function Funcard() {
         image: "/boy1.png",
         bgColor: "bg-[#FFC2E2]",
         imageClass: "h-full w-auto object-contain",
-        textSize: "text-2xl"
       },
       {
         step: "2.",
@@ -53,89 +52,79 @@ export default function Funcard() {
 
   return (
     <>
-      <section className="max-w-6xl mx-auto py-16 bg-white">
-        <div className="">
-          {/* Stats Row */}
-          <div className="grid grid-cols-3 gap-4 sm:gap-8 mb-16">
-            {stats.map((stat, i) => (
-              <div key={i} className="text-center">
-                <p className="text-3xl font-bold text-[#0B31BD]">{stat.value}</p>
-                <p className="text-3xl text-[#0B85BD] font-medium mt-1">{stat.label}</p>
+      {/* Stats + Cards Section */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-white">
+        {/* Stats */}
+        <div className="grid grid-cols-3 gap-6 mb-16">
+          {stats.map((stat, i) => (
+            <div key={i} className="text-center">
+              <p className="text-xl md:text-4xl font-bold text-[#0B31BD]">{stat.value}</p>
+              <p className="text-sm md:text-3xl text-[#0B85BD] font-medium mt-1">{stat.label}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Heading */}
+        <div className="text-center mb-16 lg:mb-20 px-4">
+          <h2 className="text-4xl sm:text-5xl font-bold text-[#0B31BD] mb-4">{heading.title}</h2>
+          <p className="text-[#061651] text-base sm:text-lg max-w-3xl mx-auto">{heading.subtitle}</p>
+        </div>
+
+        {/* Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-20">
+          {cards.map((card, i) => (
+            <div
+              key={i}
+              className="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 flex flex-col h-[440px]"
+            >
+              {/* Text Part */}
+              <div className="p-6 pt-8 flex flex-col justify-start flex-1">
+                <p className="text-blue-600 font-bold text-2xl mb-3">{card.step}</p>
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">{card.title}</h3>
+                <p className="text-gray-600 text-xl leading-relaxed">{card.description}</p>
               </div>
-            ))}
-          </div>
 
-          {/* Main Heading */}
-          <div className="text-center mb-20">
-            <h2 className="text-5xl font-bold text-[#0B31BD] mb-4">{heading.title}</h2>
-            <p className="text-[#061651] text-base sm:text-lg">{heading.subtitle}</p>
-          </div>
-
-          {/* Cards Grid – All cards now have uniform styling */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-20">
-            {cards.map((card, i) => (
-              <div
-                key={i}
-                className="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 flex flex-col h-[440px]"
-              >
-                {/* Text Content Area */}
-                <div className="p-6 pt-8 flex flex-col justify-start flex-1">
-                  <p className="text-blue-600 font-bold text-2xl mb-3">{card.step}</p>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3">{card.title}</h3>
-                  <p className="text-gray-600 text-xl leading-relaxed">{card.description}</p>
-                </div>
-
-                {/* Image and Color Background Section */}
-                <div className="relative w-full h-[200px] flex items-flex-end justify-end">
-                  {/* Color block at bottom */}
-                  <div className={`absolute bottom-0 left-0 right-0 h-[138px] ${card.bgColor}`}></div>
-
-                  {/* Image positioned over color block */}
-                  <img
-                    src={card.image || "/placeholder.svg"}
-                    alt={card.title}
-                    className="relative z-10 h-full mr-8 w-auto object-contain"
-                  />
-                </div>
+              {/* Image + Color Block */}
+              <div className="relative w-full h-[200px]">
+                <div className={`absolute bottom-0 left-0 right-0 h-[138px] ${card.bgColor}`}></div>
+                <img
+                  src={card.image || "/placeholder.svg"}
+                  alt={card.title}
+                  className="absolute bottom-0 right-4 h-full w-auto object-contain z-10"
+                />
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* Approach Section */}
-      <section className=" max-w-6xl h-[863px] mx-auto py-16 lg:py-24">
-        <div className="">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            {/* Left - Image */}
-            <div className="flex justify-between relative">
-              <img
-                src={approach.image}
-                alt="Student"
-                className="relative z-10 rounded-full object-cover w-[600px] "
-              />
-            </div>
+      {/* Approach Section – Responsive */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Left Image – Mobile এ উপরে, Desktop এ বামে */}
+          <div className="order-1 lg:order-1 flex justify-center lg:justify-start">
+            <img
+              src={approach.image}
+              alt="Student"
+              className=" w-full max-w-md lg:max-w-lg xl:w-[600px] h-auto"
+            />
+          </div>
 
-            {/* Right - Content */}
-            <div className="flex flex-col  justify-center">
-              <p className="text-[#061651] text-sm tracking-wide uppercase">
-                {approach.tag}
-              </p>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0B31BD] leading-tight">
-                Erfahrene Tutoren,
-              </h2>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0B85BD] mb-6 leading-tight">
-                persönlich & <br /> individuell
-              </h2>
-              <p className="text-[#1F2D62] text-base sm:text-lg leading-relaxed mb-8">
-                {approach.description}
-              </p>
-              <Button
-              className="bg-[#0B31BD] w-52 px-8 py-6 text-lg rounded-xl hover:bg-[#092A9E] text-white"
-            >
+          {/* Right Content */}
+          <div className="order-2 lg:order-2 text-center lg:text-left">
+            <p className="text-[#061651] text-lg tracking-wide mb-4">{approach.tag}</p>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0B31BD] leading-tight">
+              Erfahrene Tutoren,
+            </h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0B85BD] mb-6 leading-tight">
+              persönlich & <br className="hidden sm:block" /> individuell
+            </h2>
+            <p className="text-[#1F2D62] text-base sm:text-lg leading-relaxed mb-8 max-w-2xl">
+              {approach.description}
+            </p>
+            <Button className="bg-[#0B31BD] w-full sm:w-52 px-8 py-6 text-lg rounded-xl hover:bg-[#092A9E] text-white">
               {approach.buttonText}
             </Button>
-            </div>
           </div>
         </div>
       </section>
