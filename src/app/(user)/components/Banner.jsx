@@ -1,6 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 const Banner = () => {
   return (
@@ -23,9 +24,11 @@ const Banner = () => {
                 <Button className="bg-white hover:bg-gray-50 px-8 py-3 rounded-lg font-semibold transition-colors">
                   Find Tutor
                 </Button>
-                <Button className="border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-3 rounded-lg font-semibold transition-colors">
+                <Link href="/free-trial-student">
+                  <Button className="border-2 w-full border-white text-white hover:bg-white hover:text-blue-600 px-8 py-3 rounded-lg font-semibold transition-colors">
                   Free Trial
                 </Button>
+                </Link>
               </div>
             </div>
 

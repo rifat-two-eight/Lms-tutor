@@ -31,7 +31,7 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8 lg:gap-14">
             <Link 
-              href="/lehrer-werden" 
+              href="/free-trial-teacher" 
               className="text-[#0B31BD] text-lg lg:text-xl font-medium hover:text-[#092A9E] transition-colors"
             >
               Lehrer werden
@@ -63,7 +63,7 @@ const Navbar = () => {
         >
           <div className="py-6 space-y-4 border-t border-gray-200">
             <Link
-              href="/lehrer-werden"
+              href="/free-trial-teacher"
               onClick={closeMenu}
               className="block px-4 py-3 text-lg font-medium text-gray-800 hover:text-[#0B31BD] hover:bg-blue-50 rounded-lg transition mx-2"
             >
